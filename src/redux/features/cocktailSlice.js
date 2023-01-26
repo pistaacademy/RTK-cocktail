@@ -5,3 +5,27 @@ export const fetchCocktails = createAsyncThunk("cocktails/fetchCocktails", async
     ).then((res)=> res.json());
 })
 
+const cocktailSlice = createSlice({
+    name: "cocktails",
+    initialState: {
+        cocktails: [],
+        cocktail: [],
+        loading: false,
+        error: null
+    },
+    extraReducers: {
+        [fetchCocktails.pending]: (state, action) => {
+            state.loadeing = true;
+        },
+        [fetchCocktails.fulfilled] : (state, action) => {
+            state.loading = false;
+            state.cocktails = action.payload.drinks;
+        },
+        [fetchCocktails.rejected] : (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
+        }
+    }
+})
+
+export default cocktailSlice.reducer;
