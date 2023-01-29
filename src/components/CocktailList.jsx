@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchCocktails } from '../redux/features/cocktailSlice';
 import { Link } from 'react-router-dom';
 
+import styles from './CocktailList.module.css';
+
 const CocktailList = () => {
 
     const { cocktails, loading } = useSelector((state) => ({...state.app}));
@@ -31,10 +33,34 @@ const CocktailList = () => {
         }
     },[cocktails]);
 
+    if(loading) {
+        return (
+            <div>
+                <span>Loading ...</span>
+            </div>
+        );
+    }
     
     return (
-        <div>
-            <h1>Cocktail List</h1>
+        <div className={styles.container}>
+            <div className={styles.row}>
+                {modifiedCocktail.map((item)=>{
+                    const {id, name, image, glass, info} = item;
+                    return (
+                            <div className={styles.card}  key={id}>
+                                <img src={image} alt={name} className={styles.card_img} />
+                                <div className={styles.card_body}>
+                                    <h5 className={styles.card_title}>{name}</h5>
+                                    <h4 className={styles.card_title}>{glass}</h4>
+                                    <p className={styles.card_text}>{info}</p>
+                                    <Link to={`/cocktail/${id}`}>
+                                        <button className={styles.btn}>Detail</button>
+                                    </Link>
+                                </div>
+                            </div>
+                    )
+                })}
+            </div>
         </div>
     )
 }
