@@ -40,6 +40,10 @@ const CocktailList = () => {
             </div>
         );
     }
+
+    if(!cocktails) {
+        return <h2>No Cocktails matched with your search item</h2>
+    }
     
     return (
         <div className={styles.container}>
