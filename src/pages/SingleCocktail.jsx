@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchSingleCocktail } from '../redux/features/cocktailSlice';
 import { Link, useParams } from 'react-router-dom';
 
-const fetchSingleCocktail  = () => {
+const SingleCocktail  = () => {
     const { cocktail, loading } = useSelector((state) => ({...state.app}));
     const [modifiedCocktail, setModifiedCocktail] = useState([]);
     const dispatch = useDispatch();
