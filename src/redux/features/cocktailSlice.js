@@ -6,7 +6,7 @@ export const fetchCocktails = createAsyncThunk("cocktails/fetchCocktails", async
 })
 
 export const fetchSingleCocktail = createAsyncThunk("cocktails/fetchSingleCocktail", async ({id}) => {
-    return fetch(`https://thecocktaildb.com/api/json/v1/1/search.php?s=${id}`
+    return fetch(`https://thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
     ).then((res)=> res.json());
 })
 
